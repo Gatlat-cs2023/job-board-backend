@@ -9,3 +9,10 @@ class JobViewSet(viewsets.ModelViewSet):
     serializer_class = JobSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['location', 'category', 'job_type']
+
+    permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [IsAuthenticated(), IsAdmin()]
+        return [IsAuthenticated()]
