@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets, filters
 from .models import Job
 from .serializers import JobSerializer
